@@ -1,7 +1,6 @@
 :root {
     --main-bg-color: #fff; 
     --main-text-color: #000; 
-    --highlight-color: #000;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -70,29 +69,30 @@ section {
     text-align: center;
 }
 
-.quote-form {
+/* +++++ CATEGORY SELECT +++++ */
+
+.quote-select {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
 }
 
+/* +++++ LOGIN +++++ */
+
 fieldset {
     margin: 3%;
-    padding: 20px;
+    padding: 50px;
     border: 3px solid black;
     border-radius: 12px;
 }
 
 legend {
     font-weight: bold;
-    color: var(--highlight-color);
+    color: black;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
+
 
 .modal {
     display: none;
@@ -103,27 +103,25 @@ label {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-  }
-  
+    padding-top: 200px;
+}
+
   .add-quote {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
     max-width: 500px;
-    padding: 20px;
+    padding: 50px;
     margin: 0 auto;
-    background-color: #f9f9f9;
+    background-color: #fff;
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  }
+}
   
   .add-quote label {
     margin-bottom: 10px;
-  }
+}
   
   .add-quote input {
     width: 95%;
@@ -131,7 +129,7 @@ label {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
+}
   
   .add-quote button[type="submit"],
   .add-quote button[type="button"] {
@@ -142,12 +140,15 @@ label {
     border-radius: 4px;
     color: white;
     cursor: pointer;
-  }
+}
   
-  .add-quote button[type="submit"]:hover,
+.add-quote button[type="submit"]:hover {
+    background-color: limegreen;
+}
+
   .add-quote button[type="button"]:hover {
-    background-color: lightgreen;
-  }
+    background-color: limegreen;
+}
 
 input[type="username"],
 input[type="password"],
@@ -162,36 +163,19 @@ select {
     background-color: var(--main-bg-color);
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--highlight-color);
-}
-
-::placeholder {
-    color: #888; 
-}
-
-:required {
-    border-color: #dc3545; 
-}
-
-:valid {
-    border-color: #28b832;
-}
-
 button {
-    color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
-    background-color: #0e0e0e;
-    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    background-color: #000;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.35s ease;
+    border: none;
 }
 
 button:hover {
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 footer {

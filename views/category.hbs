@@ -24,16 +24,19 @@
   </header>
 
   <main>
+
     <section>
+
       <h2>{{category}} Quotes</h2>
-      {{#if error}}
-        <p class="error">{{error}}</p>
-      {{/if}}
+        {{#if error}}
+          <p class="error">{{error}}</p>
+        {{/if}}
       <ul>
         {{#each quotes}}
           <li>"{{quote}}" - {{author}}</li>
         {{/each}}
       </ul>
+
       <button id="add-quote-btn">Add Quote</button>
 
       <div id="add-quote-modal" class="modal">
@@ -48,7 +51,9 @@
           </form>
         </div>
       </div>
+
     </section>
+
   </main>
 
   <footer>
@@ -60,18 +65,18 @@
     const btn = document.getElementById("add-quote-btn");
     const closeBtn = document.getElementById("close-btn");
 
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
     btn.onclick = function() {
       modal.style.display = "block";
     }
 
     closeBtn.onclick = function() {
       modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
     }
   </script>
 </body>
