@@ -69,15 +69,6 @@ section {
     text-align: center;
 }
 
-/* +++++ CATEGORY SELECT +++++ */
-
-.quote-select {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-}
-
 /* +++++ LOGIN +++++ */
 
 fieldset {
@@ -92,78 +83,18 @@ legend {
     color: black;
 }
 
+/* +++++ CATEGORY SELECT +++++ */
 
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 200px;
-}
-
-  .add-quote {
+.quote-select {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 500px;
-    padding: 50px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-}
-  
-  .add-quote label {
-    margin-bottom: 10px;
-}
-  
-  .add-quote input {
-    width: 95%;
+    align-items: center;
     padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-  
-  .add-quote button[type="submit"],
-  .add-quote button[type="button"] {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #0b0b0b;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-}
-  
-.add-quote button[type="submit"]:hover {
-    background-color: limegreen;
 }
 
-  .add-quote button[type="button"]:hover {
-    background-color: limegreen;
-}
+/* +++++ ADD QUOTE +++++ */
 
-input[type="username"],
-input[type="password"],
-textarea,
-select {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid var(--main-text-color);
-    border-radius: 5px;
-    color: var(--main-text-color);
-    background-color: var(--main-bg-color);
-}
-
-button {
+#add-quote-button {
     text-decoration: none;
     color: #fff;
     padding: 10px 30px;
@@ -173,10 +104,80 @@ button {
     border: none;
 }
 
-button:hover {
-    background-color: lightgreen;
+#add-quote-button:hover {
+    background-color: limegreen;
     cursor: pointer;
 }
+
+/* +++++ QUOTE ADD INPUT +++++ */
+
+.modal {
+    z-index: 1;
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+    padding-top: 200px;
+}
+
+.add-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+    padding: 50px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px; 
+}
+  
+.add-quote label {
+    margin-bottom: 10px;
+}
+  
+.add-quote input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+#submit-button, #close-button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+#submit-button:hover {
+    background-color: limegreen;
+    transition: 0.35s;
+}
+
+#close-button:hover {
+    background-color: limegreen;
+    transition: 0.35s;
+}
+
+input[type="username"], input[type="password"], textarea, select {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+}
+
+/* +++++ FOOTER +++++ */
 
 footer {
     background-color: green;

@@ -1,7 +1,7 @@
 {
-  "name": "hw8",
+  "name": "cs290hw8",
   "version": "1.0.0",
-  "description": "quote book app for CS290",
+  "description": "Quotebook app for CS290",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"

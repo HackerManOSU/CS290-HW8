@@ -2,9 +2,9 @@
 
 const express = require('express');
 const { engine } = require('express-handlebars');
-const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = 4000;
@@ -15,7 +15,14 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 // Set up Handlebars as the view engine
-app.engine('hbs', engine({ extname: '.hbs', defaultLayout: false}));
+app.engine('hbs', engine({ 
+  extname: '.hbs', 
+  defaultLayout: false,
+  partialsDir: path.join(__dirname, 'partials') // This sets the path relative to server.js
+
+
+}));
+
 app.set('view engine', 'hbs');
 
 // Routes

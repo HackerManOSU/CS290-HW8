@@ -8,31 +8,23 @@
 
 <body>
 
-  <header>
-
-    <h1>Quotebook</h1>
-    <nav class="nav-brand">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/quotes" class="nav-link">Quotes</a>
-      {{#if username}}
-        <a href="/logout" class="nav-link">Logout</a>
-      {{else}}
-        <a href="/login" class="nav-link">Login</a>
-      {{/if}}
-    </nav>
-
-  </header>
+    {{> header}}
 
   <main>
+
     <fieldset>
-        <legend>Login</legend>
+
+      <legend>Login</legend>
+
     <form action="/login" method="post">
       <label for="username">Username:</label>
       <input type="username" id="username" name="username" required>
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
-      <button type="submit">Login</button>
+      <button type="submit" id="login-submit">Login</button>
+
     </form>
+
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
@@ -40,8 +32,7 @@
     </fieldset>
   </main>
 
-  <footer>
-    <p>&copy;Zane Garvey, Quote Book, Oregon State University CS290 - Web Development</p>
-  </footer>
+  {{> footer}}
+
 </body>
 </html>

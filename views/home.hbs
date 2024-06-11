@@ -8,20 +8,7 @@
 
 <body>
 
-  <header>
-
-    <h1>Quotebook</h1>
-    <nav class="nav-brand">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/quotes" class="nav-link">Quotes</a>
-      {{#if username}}
-        <a href="/logout" class="nav-link">Logout</a>
-      {{else}}
-        <a href="/login" class="nav-link">Login</a>
-      {{/if}}
-    </nav>
-
-  </header>
+  {{> header}}
 
   <main>
     {{#if username}}
@@ -31,8 +18,7 @@
     {{/if}}
   </main>
 
-  <footer>
-    <p>&copy;Zane Garvey, Quote Book, Oregon State University CS290 - Web Development</p>
-  </footer>
+  {{> footer}}
+
 </body>
 </html>
