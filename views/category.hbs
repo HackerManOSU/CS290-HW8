@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quote Categories</title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+
+  <header>
+
+    <h1>Quotebook</h1>
+    <nav class="nav-brand">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/quotes" class="nav-link">Quotes</a>
+      {{#if username}}
+        <a href="/logout" class="nav-link">Logout</a>
+      {{else}}
+        <a href="/login" class="nav-link">Login</a>
+      {{/if}}
+    </nav>
+
+  </header>
+
+  <main>
+    <section>
+      <h2>{{category}} Quotes</h2>
+      {{#if error}}
+        <p class="error">{{error}}</p>
+      {{/if}}
+      <ul>
+        {{#each quotes}}
+          <li>"{{quote}}" - {{author}}</li>
+        {{/each}}
+      </ul>
+      <button id="add-quote-btn">Add Quote</button>
+
+      <div id="add-quote-modal" class="modal">
+        <div class="modal-content">
+          <form class="add-quote" action="/quotes/{{category}}" method="post">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+            <label for="quote">Quote:</label>
+            <input type="text" id="quote" name="quote" required>
+            <button type="submit">Add Quote</button>
+            <button type="button" id="close-btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy;Zane Garvey, Quote Book, Oregon State University CS290 - Web Development</p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById("add-quote-modal");
+    const btn = document.getElementById("add-quote-btn");
+    const closeBtn = document.getElementById("close-btn");
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

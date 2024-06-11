@@ -1,74 +1,63 @@
+'use strict';
+
 const express = require('express');
-const app = express();
+const { engine } = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const path = require('path');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const port = 4000;
 
-// Middleware to parse JSON and cookies
-app.use(bodyParser.json());
+const app = express();
+const PORT = 4000;
+
+// Middleware to parse URL-encoded bodies and cookies
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
-// Route for serving the homepage
+// Set up Handlebars as the view engine
+app.engine('hbs', engine({ extname: '.hbs', defaultLayout: false}));
+app.set('view engine', 'hbs');
+
+// Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  const username = req.cookies.username;
+  res.render('home', { username });
 });
 
-// Route for serving quote categories
-app.get('/quotes', (req, res) => {
-    fs.readFile('quoteData.json', (err, data) => {
-        if (err) {
-            res.status(500).send('Error reading quote data.');
-            return;
-        }
-        res.json(JSON.parse(data));
-    });
+app.get('/home', (req, res) => {
+  const username = req.cookies.username;
+  res.render('home', { username });
 });
 
-// Route for serving quotes by category
-app.get('/quotes/:category', (req, res) => {
-    const category = req.params.category;
-    fs.readFile('quoteData.json', (err, data) => {
-        if (err) {
-            res.status(500).send('Error reading quote data.');
-            return;
-        }
-        const quotes = JSON.parse(data);
-        if (quotes[category]) {
-            res.json(quotes[category]);
-        } else {
-            res.status(404).send('Category not found.');
-        }
-    });
+app.get('/login', (req, res) => {
+  res.render('login');
 });
 
-// Login route
 app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    fs.readFile('userData.json', 'utf8', (err, data) => {
-        if (err) {
-            res.status(500).send('Error reading user data.');
-            return;
-        }
-        const users = JSON.parse(data);
-        if (users[username] && users[username].password === password) {
-            res.cookie('username', username, { httpOnly: true });
-            res.json({ status: 'success', message: 'Login successful' });
-        } else {
-            res.status(401).json({ status: 'error', message: 'Invalid credentials' });
-        }
-    });
+  const userData = JSON.parse(fs.readFileSync('./userData.json', 'utf8'));
+  const { username, password } = req.body;
+  const validUser = userData[username];
+
+  if (!validUser) {
+    res.render('login', { errorMessage: 'Invalid username' });
+  } else if (validUser.password !== password) {
+    res.render('login', { errorMessage: 'Invalid password' });
+  } else {
+    res.cookie('username', username);
+    res.redirect('/home');
+  }
 });
 
-// Logout route
+
 app.get('/logout', (req, res) => {
-    res.clearCookie('username');
-    res.redirect('/');
+  res.clearCookie('username');
+  res.redirect('/');
 });
 
-// Listen on the configured port
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+// Import and use quotes routes
+const quotesRouter = require('./routes/quotes');
+app.use('/quotes', quotesRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
