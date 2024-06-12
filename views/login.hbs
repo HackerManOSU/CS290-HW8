@@ -8,7 +8,7 @@
 
 <body>
 
-    {{> header}}
+    {{> header}} <!-- header partial -->
 
   <main>
 
@@ -16,7 +16,9 @@
 
       <legend>Login</legend>
 
+    <!-- form for user login -->
     <form action="/login" method="post">
+    
       <label for="username">Username:</label>
       <input type="username" id="username" name="username" required>
       <label for="password">Password:</label>
@@ -25,6 +27,7 @@
 
     </form>
 
+    <!-- if errorMessage is present, display it in p with class error -->
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
@@ -32,7 +35,7 @@
     </fieldset>
   </main>
 
-  {{> footer}}
+  {{> footer}} <!-- footer partial -->
 
 </body>
 </html>

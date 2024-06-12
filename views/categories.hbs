@@ -8,7 +8,7 @@
 
 <body>
 
-  {{> header}}
+  {{> header}} <!-- header partial -->
 
   <main>
 
@@ -17,15 +17,17 @@
       <h2>Quote Categories</h2>
       <form class="quote-select">
       {{#each categories}}
+        <!-- Begin iterating over 'categories', a context-provided list or array. -->
         <a href="/quotes/{{this}}" class="nav-link">{{this}}</a>
       {{/each}}
+      <!-- End of the iteration block -->
       </form>
 
     </section>
 
   </main>
 
-  {{> footer}}
+  {{> footer}} <!-- footer partial -->
   
 </body>
 </html>

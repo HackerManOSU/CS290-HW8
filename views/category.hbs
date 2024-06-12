@@ -8,14 +8,14 @@
 
 <body>
 
-  {{> header}}
+  {{> header}} <!-- header partial -->
 
   <main>
 
     <section>
 
       <h2>{{category}} Quotes</h2>
-        {{#if error}}
+        {{#if error}} <!-- conditional rendering -->
           <p class="error">{{error}}</p>
         {{/if}}
       <ul>
@@ -26,8 +26,11 @@
 
       <button id="add-quote-button">Add Quote</button>
 
+      <!-- modal dialogue -->
       <div id="add-quote-modal" class="modal">
         <div class="modal-content">
+
+          <!-- form to submit a new quote, posts to /quotes/{{category}} -->
           <form class="add-quote" action="/quotes/{{category}}" method="post">
             <label for="author">Author:</label>
             <input type="text" id="author" name="author" required>
@@ -43,23 +46,31 @@
 
   </main>
 
-  {{> footer}}
+  {{> footer}} <!-- footer partial -->
 
   <script>
+
+    // Retrieves the modal element
     const modal = document.getElementById("add-quote-modal");
+
+    // retrieves open and close button for modal
     const button = document.getElementById("add-quote-button");
     const closeButton = document.getElementById("close-button");
 
+    // Adds click event handler to the window
     window.onclick = function(event) {
+      // Closes the modal if the click occurred outside the modal content
       if (event.target == modal) {
         modal.style.display = "none";
       }
     }
 
+    // show the modal when the Add Quote button is clicked
     button.onclick = function() {
       modal.style.display = "block";
     }
 
+    // hide the modal when the Close button is clicked
     closeButton.onclick = function() {
       modal.style.display = "none";
     }

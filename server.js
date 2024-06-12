@@ -1,5 +1,6 @@
 'use strict';
 
+// Import required modules
 const express = require('express');
 const { engine } = require('express-handlebars');
 const fs = require('fs');
@@ -23,12 +24,12 @@ app.engine('hbs', engine({
 
 }));
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'hbs'); // Sets Handlebars as the template engine for rendering views
 
 // Routes
 app.get('/', (req, res) => {
-  const username = req.cookies.username;
-  res.render('home', { username });
+  const username = req.cookies.username; // Retrieve username from cookies
+  res.render('home', { username }); // Renders the home template passing username as data
 });
 
 app.get('/home', (req, res) => {
@@ -37,28 +38,28 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login'); // Renders the login form template
 });
 
 app.post('/login', (req, res) => {
-  const userData = JSON.parse(fs.readFileSync('./userData.json', 'utf8'));
-  const { username, password } = req.body;
-  const validUser = userData[username];
+  const userData = JSON.parse(fs.readFileSync('./userData.json', 'utf8')); // Reads user data from a JSON file and parses it
+  const { username, password } = req.body; // Extracts username and password from the request body
+  const validUser = userData[username]; // Checks if the username exists in the data
 
   if (!validUser) {
     res.render('login', { errorMessage: 'Invalid username' });
   } else if (validUser.password !== password) {
     res.render('login', { errorMessage: 'Invalid password' });
   } else {
-    res.cookie('username', username);
-    res.redirect('/home');
+    res.cookie('username', username); // Sets a cookie with the username
+    res.redirect('/home'); // Redirects to home page
   }
 });
 
 
 app.get('/logout', (req, res) => {
-  res.clearCookie('username');
-  res.redirect('/');
+  res.clearCookie('username'); // Clears the username cookie
+  res.redirect('/'); // Redirects to the homepage
 });
 
 // Import and use quotes routes

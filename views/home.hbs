@@ -8,17 +8,20 @@
 
 <body>
 
-  {{> header}}
+  {{> header}} <!-- header partial -->
 
   <main>
+    <!-- if username is defined display a personalized welcome message -->
     {{#if username}}
       <h1>Welcome, {{username}}!</h1>
+    
+    <!-- if not defined, display general welcome message -->
     {{else}}
       <h1>Welcome to the Quotebook OSU! Login <a href="/login">here</a>.</h1>
     {{/if}}
   </main>
 
-  {{> footer}}
+  {{> footer}}  <!-- footer partial -->
 
 </body>
 </html>
